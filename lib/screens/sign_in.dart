@@ -10,8 +10,7 @@ import '../HomePage.dart';
 
 
 class SignIn extends StatefulWidget {
-  const SignIn({super.key, required this.title});
-  final String title;
+  const SignIn({super.key});
 
   @override
   State<SignIn> createState() => _SignInState();
@@ -142,9 +141,6 @@ class _SignInState extends State<SignIn> with TickerProviderStateMixin{
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TextField(
-                            obscureText: true,
-                            enableSuggestions: false,
-                            autocorrect: false,
                             controller: _conUserId,
                             decoration: InputDecoration(
                               hintText: 'Логин',

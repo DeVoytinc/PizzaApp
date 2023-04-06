@@ -55,12 +55,13 @@ class _LoginState extends State<Login>{
 
         Navigator.push(
             context, 
-            MaterialPageRoute(builder: (_) => SignIn(title: '',)));
+            MaterialPageRoute(builder: (_) => SignIn()));
 
-      }).catchError((error){
-        print(error);
-        Toast.show('Ошибка при сохранении данных', duration: Toast.lengthLong, gravity: Toast.bottom);
-      });
+      });//.catchError((error){
+        //print(error);
+        //Toast.show('Ошибка при сохранении данных', duration: Toast.lengthLong, gravity: Toast.bottom);
+      //}
+      //);
 
     }
   }
