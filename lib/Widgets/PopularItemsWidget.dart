@@ -4,7 +4,7 @@ import '../pizza_model.dart';
 
 class PopularItemsWidget extends StatelessWidget{
 
-  List<Pizza> poppizzes = [
+  final List<Pizza> poppizzes = [
     Pizza(
       name: 'Маргарита', 
       description: 'пицца с томатами', 

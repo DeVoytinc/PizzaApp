@@ -6,6 +6,8 @@ class Pizza{
   int price;
   double rating;
 
+  late int count = 1;
+
   Pizza({
     required this.name, 
     required this.description, 

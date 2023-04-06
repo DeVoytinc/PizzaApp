@@ -80,7 +80,7 @@ class _SignInState extends State<SignIn> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     ToastContext().init(context);
-    final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
+    //final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
 
     return Scaffold(
       backgroundColor: Colors.white,

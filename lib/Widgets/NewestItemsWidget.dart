@@ -1,13 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pizza_model.dart';
+import 'package:flutter_application_1/screens/shop_cart.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:toast/toast.dart';
 
-import '../main.dart';
+//import '../main.dart';
+
+_addToOrderList(Pizza addedPissa){
+  if(orderList.contains(addedPissa))
+  {
+    Toast.show('Такой товар уже есть в корзине', duration: Toast.lengthLong, gravity: Toast.bottom);
+  }else{
+    orderList.add(addedPissa);
+  }
+}
 
 class NewestItemsWidget extends StatelessWidget{
 
-  List<Pizza> newestpizzes = [
+  final List<Pizza> newestpizzes = [
     Pizza(
       name: 'Сибадишная', 
       description: 'Дорогие каперсы, анчоусы, сыр', 
@@ -69,6 +80,7 @@ class NewestItemsWidget extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    ToastContext().init(context);
     return Column(
       children: 
         List.generate(newestpizzes.length, (index) {
@@ -162,10 +174,10 @@ class NewestItemsWidget extends StatelessWidget{
                           color: Colors.red,
                           size: 26,
                         ),
-                        Icon(
-                          CupertinoIcons.cart,
-                          color: Colors.red,
-                          size: 26,
+                        IconButton(
+                          icon: Icon(CupertinoIcons.cart),
+                          color: Colors.red, 
+                          onPressed: () { _addToOrderList(newestpizzes[index]); },
                         ),
                       ],),
                   ),

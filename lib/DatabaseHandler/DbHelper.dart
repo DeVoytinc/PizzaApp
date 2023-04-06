@@ -57,7 +57,7 @@ class DbHelper {
     );
 
     if (res!.length > 0) {
-      return UserModel.fromMap(res!.first);
+      return UserModel.fromMap(res.first);
     }
 
     return null;
