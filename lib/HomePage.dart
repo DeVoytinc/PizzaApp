@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/DatabaseHandler/DbHelper.dart';
 import 'package:flutter_application_1/screens/sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Widgets/AppBarWidget.dart';
 import '../Widgets/NewestItemsWidget.dart';
-import '../Widgets/PopularItemsWidget.dart';
 
+
+bool onUp = true;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,6 +18,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late DbHelper dbHelper;
+
+  TextEditingController saerch = TextEditingController();
+
   Future<SharedPreferences> _pref = SharedPreferences.getInstance();
   String userID = '';
   String email = '';
@@ -25,7 +31,10 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     getUserData();
+    dbHelper = DbHelper();
   }
+
+ 
 
   Future<void> getUserData() async{
     final SharedPreferences sp = await _pref;
@@ -102,10 +111,16 @@ class _HomePageState extends State<HomePage> {
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 15,),
                       child: TextFormField(
+                        controller: saerch,
                       decoration: const InputDecoration(
                         hintText:  "Какую пиццу предпочитаете?",
                         border: InputBorder.none,
                       ),
+                      onChanged: (value) {
+                        setState(() {
+                          searchedtext = value;
+                        });
+                      },
                       ) ,
                     ),
                   ),
@@ -118,28 +133,43 @@ class _HomePageState extends State<HomePage> {
           ),
 
           // Популярная пицца
-          const Padding(padding: EdgeInsets.only(top: 20, left: 10),
-          child: Text(
-            "Популярное",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-          ),
-          ),
+          // const Padding(padding: EdgeInsets.only(top: 20, left: 10),
+          // child: Text(
+          //   "Популярное",
+          //   style: TextStyle(
+          //     fontWeight: FontWeight.bold,
+          //     fontSize: 20,
+          //   ),
+          // ),
+          // ),
 
-          // Популярное Items Widget
-          PopularItemsWidget(),
+          // // Популярное Items Widget
+          // PopularItemsWidget(),
 
           // Новинки
 
-          const Padding(padding: EdgeInsets.only(top: 20, left: 10),
-            child: Text(
-              "Новинки",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
+          Padding(padding: EdgeInsets.only(top: 20, left: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Меню",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                IconButton(
+                  icon: onUp ? Icon(Icons.arrow_upward_rounded, color: Colors.black,) :
+                    Icon(Icons.arrow_downward_rounded, color: Colors.black,) , 
+                  onPressed: (){
+                    setState(() {
+                      onUp = !onUp;
+                    });
+                  },
+                ),
+              
+              ],
             ),
           ),
 

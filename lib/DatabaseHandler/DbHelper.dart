@@ -1,3 +1,4 @@
+
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -6,6 +7,7 @@ import 'dart:io' as io;
 import '../UserModel.dart';
 
 class DbHelper {
+
   static Database? _db;
 
   static const String DB_Name = 'test.db';
@@ -15,7 +17,7 @@ class DbHelper {
   static const String C_userID = 'user_id';
   static const String C_userEmail = 'email';
   static const String C_userPassword = 'password';
-
+  
   Future<Database?> get db async{
     if (_db != null){
       return _db;
@@ -45,7 +47,7 @@ class DbHelper {
 
   Future<UserModel> saveData(UserModel user) async{
     var dbClient = await db;
-    user.userId = (await dbClient?.insert(Table_User, user.toMap())) as String;
+    user.userId = (await dbClient?.insert(Table_User, user.toMap())).toString();
     return user;
   }
 
@@ -62,5 +64,8 @@ class DbHelper {
 
     return null;
   }
+
+
+
 }
 

@@ -17,7 +17,7 @@ class PopularItemsWidget extends StatelessWidget{
       description: 'Итальянская', 
       imagePath: 'lib/images/pizza22.png', 
       price: 30, 
-      rating: 0.1
+      rating: 1
     ),
     Pizza(
       name: 'Бургер', 

@@ -124,138 +124,136 @@ class _CartState extends State<Cart> {
                 ),
               ),
             ),
-            Expanded(
-              child: Column(
-                  children: 
-                    List.generate(orderList.length, (index) {
-                      return Padding(padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10,),
-                        child: Container(
-                        width: 380, height: 160,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow:[ 
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 3,
-                              blurRadius: 10,
-                              offset: Offset(0,3),
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 10,
-                              child: InkWell(
-                                onTap: () {},
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Image.asset(orderList[index].imagePath,
-                                      height: 120,
-                                      width: 150,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 12,
-                              child: Container(
-                                width: 173,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Text(orderList[index].name,
-                                      style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                            
-                                    ),
-                                    ),
-                                    Text(orderList[index].description,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        //fontWeight: FontWeight.bold,
-                            
-                                      ),
-                                    ),
-                                    
-                                    RatingBar.builder(
-                                      initialRating: orderList[index].rating,
-                                    minRating: 1,
-                                    direction: Axis.horizontal,
-                                      itemCount: 5,
-                                      itemSize: 18,
-                                      itemPadding: EdgeInsets.symmetric(horizontal: 4),
-                                      itemBuilder:
-                                          (context, _) => Icon(
-                                            Icons.star, color:
-                                      Colors.red,),
-                                      onRatingUpdate: (index){},
-                                    ),
-                                    Text(orderList[index].price.toString()+" руб", style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    ),
-                            
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 4,
-                              child: Padding(padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    //color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SizedBox(),
-                                    IconButton(
-                                      icon: Icon(Icons.add,
-                                        color: Colors.white,
-                                        size: 26,
-                                      ), 
-                                      onPressed: () { add(index); },
-                                    ),
-                                    Text(
-                                      orderList[index].count.toString(),
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17
-                                      ),
-                                    ),
-                                    IconButton(
-                                      icon: Icon(Icons.remove,
-                                        color: Colors.white,
-                                        size: 26,
-                                      ), 
-                                      onPressed: () { minus(index); },
-                                    ),
-                                    SizedBox()
-                                  ],),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+            Column(
+                children: 
+                  List.generate(orderList.length, (index) {
+                    return Padding(padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10,),
+                      child: Container(
+                      width: 380, height: 160,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow:[ 
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 3,
+                            blurRadius: 10,
+                            offset: Offset(0,3),
+                          ),
+                        ],
                       ),
-                    );
-                  },
-                  )
-                ),
-            ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 10,
+                            child: InkWell(
+                              onTap: () {},
+                              child: Container(
+                                alignment: Alignment.center,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Image.asset(orderList[index].imagePath,
+                                    height: 120,
+                                    width: 150,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 12,
+                            child: Container(
+                              width: 173,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(orderList[index].name,
+                                    style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold,
+                          
+                                  ),
+                                  ),
+                                  Text(orderList[index].description,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      //fontWeight: FontWeight.bold,
+                          
+                                    ),
+                                  ),
+                                  
+                                  RatingBar.builder(
+                                    initialRating: orderList[index].rating.toDouble(),
+                                  minRating: 1,
+                                  direction: Axis.horizontal,
+                                    itemCount: 5,
+                                    itemSize: 18,
+                                    itemPadding: EdgeInsets.symmetric(horizontal: 4),
+                                    itemBuilder:
+                                        (context, _) => Icon(
+                                          Icons.star, color:
+                                    Colors.red,),
+                                    onRatingUpdate: (index){},
+                                  ),
+                                  Text(orderList[index].price.toString()+" руб", style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  ),
+                          
+                                ],
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 4,
+                            child: Padding(padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  //color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(),
+                                  IconButton(
+                                    icon: Icon(Icons.add,
+                                      color: Colors.white,
+                                      size: 26,
+                                    ), 
+                                    onPressed: () { add(index); },
+                                  ),
+                                  Text(
+                                    orderList[index].count.toString(),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.remove,
+                                      color: Colors.white,
+                                      size: 26,
+                                    ), 
+                                    onPressed: () { minus(index); },
+                                  ),
+                                  SizedBox()
+                                ],),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                )
+              ),
             Padding(
               padding: const EdgeInsets.all(17.0),
               child: Container(
